@@ -10,17 +10,17 @@ source:
   sha256: b7cd25b5c23901b865b98eeb8d9ebce21a8a440d5f6ceccb49d48e647abb3ca7
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   noarch: python
   
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
 
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - numpy
     - pandas
     - xarray >=0.15
@@ -36,6 +36,8 @@ requirements:
 
     
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - eo_harvest
     
